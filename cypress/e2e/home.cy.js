@@ -11,7 +11,11 @@ describe('Home Testes', () => {
       
      
   });
+ 
 
+  it('Deve conferir de após clicar no botão de loogin redirecionou pra pagina home', () => {
+    cy.url().should('include', '/index2.html ');
+  });
   it('Deve achar o botão de filtro', () => {
       cy.get('.filter-button').should('be.visible');
   });
