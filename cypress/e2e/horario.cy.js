@@ -6,29 +6,30 @@ describe('Aula Testes', () => {
         cy.get('#login').type('Fernanda');
         cy.get('#password').type('123456');
         cy.get('[onclick="login()"]').click();
-        cy.get('[href="config/ADMIN/DiasSemana/home.html"]').click({ force: true });
+        cy.get('[href="config/ADMIN/Horario/home.html"]').click({ force: true });
     });
 
-    it('Deve criar um DiasSemana', () => {
+    it('Deve criar um Horario', () => {
         cy.get('.create-btn').click();
-        cy.get('input').type('DIA');
+        cy.get(':nth-child(2) > input').select('1');
+        cy.get(':nth-child(2) > input').select('2');
         cy.get('button').click();
         cy.on('window:alert', (alertText) => {
             expect(alertText).to.contains('Dia criado com sucesso');
-            cy.url().should('eq', 'http://localhost:8080/config/ADMIN/DiasSemana/home.html');
+            cy.url().should('eq', 'http://localhost:8080/config/ADMIN/Horario/home.html');
         });
     });
 
-    it('Deve alterar um DiasSemana', () => {
+    it('Deve alterar um Horario', () => {
         cy.get(':nth-child(8) > :nth-child(2) > .button-group > .altera-btn').click();
         cy.get('#diaSemana').clear().type('Dia 2');
         cy.get('button').click();
     });
 
-    it('Deve apagar um DiasSemana', () => {
+    it('Deve apagar um Horario', () => {
         cy.get(':nth-child(8) > :nth-child(2) > .button-group > .delete-btn > .fas').click();
         cy.on('window:confirm', (confirmText) => {
-            expect(confirmText).to.contains('Tem certeza que deseja deletar este dia da Semana?'); // Verifique o texto exato do diálogo
+            expect(confirmText).to.contains('Tem certeza que deseja deletar este curso?'); // Verifique o texto exato do diálogo
             return true; 
       
     });
