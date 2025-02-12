@@ -28,7 +28,7 @@ describe('Dia Testes', () => {
     it('Deve apagar um DiasSemana', () => {
         cy.get(':nth-child(8) > :nth-child(2) > .button-group > .delete-btn > .fas').click();
         cy.on('window:confirm', (confirmText) => {
-            expect(confirmText).to.contains('Tem certeza que deseja deletar este dia da Semana?'); // Verifique o texto exato do diálogo
+            expect(confirmText).to.contains('Tem certeza que deseja deletar este dia da semana?'); // Verifique o texto exato do diálogo
             return true; 
       
     });

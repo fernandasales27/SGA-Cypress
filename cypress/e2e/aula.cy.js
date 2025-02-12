@@ -9,7 +9,7 @@ describe('Aula Testes', () => {
         cy.get('[href="config/ADMIN/Aula/home.html"]').click({ force: true });
     });
 
-    it('Deve criar uma aula', () => {
+   it('Deve criar uma aula', () => {
         cy.get('.create-btn').click();
         cy.get('form > :nth-child(2) > :nth-child(2)').select('Tcc1');
         cy.get(':nth-child(2) > :nth-child(3) > select').select('Sexta-Feira');
@@ -34,12 +34,18 @@ describe('Aula Testes', () => {
     });
 
     it('Deve apagar uma aula', () => {
-        cy.get(':nth-child(13) > :nth-child(10) > .button-group > .delete-btn').click({ force: true });
+        cy.get(':nth-child(6) > :nth-child(10) > .button-group > .delete-btn').click({ force: true });
         cy.on('window:confirm', (confirmText) => {
             expect(confirmText).to.contains('Tem certeza que deseja deletar esta aula?');
             return true; // Simula um clique em "OK"
         });
     });
+
+    it('Deve entrar na pagina ne filtro', () => {
+        
+    });
+
+
 
     it('Deve voltar para página de home ao clicar no ícone de home', () => {
         cy.get('li > a').click();

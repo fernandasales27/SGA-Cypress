@@ -25,7 +25,7 @@ describe('Horário Testes', () => {
       
 
       // Garante que há pelo menos um horário disponível para alteração
-      cy.get('.button-group > .altera-btn')
+      cy.get(':nth-child(6) > :nth-child(3) > .button-group > .altera-btn > .fas')
           .should('be.visible')
           .first()
           .click();
@@ -44,7 +44,7 @@ describe('Horário Testes', () => {
     });
 
     it('Deve apagar um Horario', () => {
-        cy.get(':nth-child(8) > :nth-child(2) > .button-group > .delete-btn > .fas').click();
+        cy.get(':nth-child(6) > :nth-child(3) > .button-group > .delete-btn').click();
         cy.on('window:confirm', (confirmText) => {
             expect(confirmText).to.contains('Tem certeza que deseja deletar este Horario?'); // Verifique o texto exato do diálogo
             return true; 
