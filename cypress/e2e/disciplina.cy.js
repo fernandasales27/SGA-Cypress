@@ -1,4 +1,4 @@
-describe('Aula Testes', () => {
+describe('Disciplina Testes', () => {
     beforeEach(() => {
         cy.visit('http://localhost:8080');
         

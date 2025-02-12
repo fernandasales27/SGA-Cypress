@@ -1,4 +1,4 @@
-describe('Aula Testes', () => {
+describe('Horário Testes', () => {
     beforeEach(() => {
         cy.visit('http://localhost:8080');
         
@@ -11,25 +11,42 @@ describe('Aula Testes', () => {
 
     it('Deve criar um Horario', () => {
         cy.get('.create-btn').click();
-        cy.get(':nth-child(2) > input').select('1');
-        cy.get(':nth-child(2) > input').select('2');
+        cy.get(':nth-child(2) > input').type('07:48'); 
+        cy.get(':nth-child(3) > input').type('08:48'); 
         cy.get('button').click();
         cy.on('window:alert', (alertText) => {
-            expect(alertText).to.contains('Dia criado com sucesso');
+            expect(alertText).to.contains('Horario criado com sucesso');
             cy.url().should('eq', 'http://localhost:8080/config/ADMIN/Horario/home.html');
         });
     });
 
     it('Deve alterar um Horario', () => {
-        cy.get(':nth-child(8) > :nth-child(2) > .button-group > .altera-btn').click();
-        cy.get('#diaSemana').clear().type('Dia 2');
-        cy.get('button').click();
+      // Aguarda a API de horários carregar
+      
+
+      // Garante que há pelo menos um horário disponível para alteração
+      cy.get('.button-group > .altera-btn')
+          .should('be.visible')
+          .first()
+          .click();
+
+      // Preenche os campos com novos horários
+      cy.get('#horaInicio').clear().type('19:48'); 
+      cy.get('#horaTermino').clear().type('21:48'); 
+      
+      // Clica no botão para salvar
+      cy.get('button').click({ force: true });
+      
+      // Valida se o horário foi alterado com sucesso
+      cy.on('window:alert', (alertText) => {
+          expect(alertText).to.contains('Horario alterado com sucesso');
+      });
     });
 
     it('Deve apagar um Horario', () => {
         cy.get(':nth-child(8) > :nth-child(2) > .button-group > .delete-btn > .fas').click();
         cy.on('window:confirm', (confirmText) => {
-            expect(confirmText).to.contains('Tem certeza que deseja deletar este curso?'); // Verifique o texto exato do diálogo
+            expect(confirmText).to.contains('Tem certeza que deseja deletar este Horario?'); // Verifique o texto exato do diálogo
             return true; 
       
     });

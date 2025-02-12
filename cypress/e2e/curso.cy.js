@@ -1,4 +1,4 @@
-describe('Aula Testes', () => {
+describe('Curso Testes', () => {
     beforeEach(() => {
         cy.visit('http://localhost:8080');
         
@@ -9,7 +9,7 @@ describe('Aula Testes', () => {
         cy.get('[href="config/ADMIN/Curso/home.html"]').click({ force: true });
     });
 
-   it('Deve criar um curso', () => {
+    it('Deve criar um curso', () => {
         cy.get('.create-btn').click();
         cy.get('input').type('Medicina');
         cy.get('select').select('Superior');
@@ -21,7 +21,7 @@ describe('Aula Testes', () => {
         });
     });
 
-  /*  it('Deve alterar um curso', () => {
+    it('Deve alterar um curso', () => {
         // Clica no botão de alterar
         cy.get(':nth-child(2) > :nth-child(3) > .button-group > .altera-btn').click();
     
@@ -33,16 +33,14 @@ describe('Aula Testes', () => {
     
         // Clica no botão de salvar alterações
         cy.get('button').click();
-    });*/
+    });
     it('Deve apagar um curso', () => {
         cy.get(':nth-child(2) > :nth-child(3) > .button-group > .delete-btn > .fas').click();
         cy.on('window:confirm', (confirmText) => {
             expect(confirmText).to.contains('Tem certeza que deseja deletar este curso?'); // Verifique o texto exato do diálogo
             return true; 
         });
-    
-       
-    
+
     });
 
    it('Deve voltar para página de home ao clicar no ícone de home', () => {
