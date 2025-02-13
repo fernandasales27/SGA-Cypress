@@ -34,14 +34,20 @@ describe('Aula Testes', () => {
     });
 
     it('Deve apagar uma aula', () => {
-        cy.get(':nth-child(6) > :nth-child(10) > .button-group > .delete-btn').click({ force: true });
+        cy.get(':nth-child(5) > :nth-child(10) > .button-group > .delete-btn').click({ force: true });
         cy.on('window:confirm', (confirmText) => {
             expect(confirmText).to.contains('Tem certeza que deseja deletar esta aula?');
             return true; // Simula um clique em "OK"
         });
     });
 
-    it('Deve entrar na pagina ne filtro', () => {
+    it('Deve entrar na pagina ne filtro e usa-lo', () => {
+        cy.get('.navbar-vertical').click();
+        cy.get('#diaSemana').select('Terça-Feira');
+        cy.get('#professor').select('Leo');
+        cy.get('#turma').select('ADS5');
+        cy.get('#turno').select('Matutino');
+        cy.get('.apply-btn').click();
         
     });
 
