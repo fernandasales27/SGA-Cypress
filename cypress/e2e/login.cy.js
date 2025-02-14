@@ -5,7 +5,7 @@ describe('Login Testes', () => {
     cy.wait(2000);
     cy.get('.btn-login').click({ force: true });
     cy.url().should('include', '/login.html');
-    cy.get('#login').type('Fernanda')
+    cy.get('#login').type('Admin')
     cy.get('#password').type('123456')
     cy.get( [onclick="window.location.href='cadastro.html'"])
     cy.get('[onclick="login()"]').click()

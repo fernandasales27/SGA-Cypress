@@ -6,7 +6,7 @@ describe('Home Testes', () => {
         
         // Realiza o login
         cy.get('.btn-login').click();
-        cy.get('#login').type('Fernanda');
+        cy.get('#login').type('Admin');
         cy.get('#password').type('123456');
         cy.get('[onclick="login()"]').click();
         

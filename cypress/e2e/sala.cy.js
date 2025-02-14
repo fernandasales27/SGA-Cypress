@@ -3,7 +3,7 @@ describe('Sala Testes', () => {
         cy.visit('http://localhost:8080');
         
         cy.get('.btn-login').click({ force: true });
-        cy.get('#login').type('Fernanda');
+        cy.get('#login').type('Admin');
         cy.get('#password').type('123456');
         cy.get('[onclick="login()"]').click();
         cy.get('[href="config/ADMIN/Sala/home.html"]').click({ force: true });

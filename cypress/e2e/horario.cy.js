@@ -3,13 +3,13 @@ describe('Horário Testes', () => {
         cy.visit('http://localhost:8080');
         
         cy.get('.btn-login').click({ force: true });
-        cy.get('#login').type('Fernanda');
+        cy.get('#login').type('Admin');
         cy.get('#password').type('123456');
         cy.get('[onclick="login()"]').click();
         cy.get('[href="config/ADMIN/Horario/home.html"]').click({ force: true });
     });
 
-    it('Deve criar um Horario', () => {
+   it('Deve criar um Horario', () => {
         cy.get('.create-btn').click();
         cy.get(':nth-child(2) > input').type('07:48'); 
         cy.get(':nth-child(3) > input').type('08:48'); 
@@ -25,7 +25,7 @@ describe('Horário Testes', () => {
       
 
       // Garante que há pelo menos um horário disponível para alteração
-      cy.get(':nth-child(6) > :nth-child(3) > .button-group > .altera-btn > .fas')
+      cy.get(':nth-child(2) > :nth-child(3) > .button-group > .altera-btn')
           .should('be.visible')
           .first()
           .click();
@@ -44,9 +44,9 @@ describe('Horário Testes', () => {
     });
 
     it('Deve apagar um Horario', () => {
-        cy.get(':nth-child(6) > :nth-child(3) > .button-group > .delete-btn').click();
+        cy.get(':nth-child(2) > :nth-child(3) > .button-group > .delete-btn').click();
         cy.on('window:confirm', (confirmText) => {
-            expect(confirmText).to.contains('Tem certeza que deseja deletar este Horario?'); // Verifique o texto exato do diálogo
+            expect(confirmText).to.contains('Tem certeza que deseja deletar este horário?'); // Verifique o texto exato do diálogo
             return true; 
       
     });

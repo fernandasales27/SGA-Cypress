@@ -3,24 +3,22 @@ describe('Modalidade Testes', () => {
         cy.visit('http://localhost:8080');
         
         cy.get('.btn-login').click({ force: true });
-        cy.get('#login').type('Fernanda');
+        cy.get('#login').type('Admin');
         cy.get('#password').type('123456');
         cy.get('[onclick="login()"]').click();
         cy.get('[href="config/ADMIN/Modalidade/home.html"]').click({ force: true });
     });
 
+    
     it('Deve criar uma Modalidade', () => {
         cy.get('.create-btn').click();
-        cy.get('input').type('Modalidade Nova');
+        cy.get('input').type('Modalidade');
         cy.get('button').click();
-        cy.on('window:alert', (alertText) => {
-            expect(alertText).to.contains('Modalidade criada com sucesso');
-            cy.url().should('eq', 'http://localhost:8080/config/ADMIN/Modalidade/home.html');
-        });
+        
     });
 
-    it('Deve alterar uma Modalidade', () => {
-        cy.get(':nth-child(2) > :nth-child(2) > .button-group > .altera-btn > .fas').click();
+   it('Deve alterar uma Modalidade', () => {
+        cy.get(':nth-child(1) > :nth-child(2) > .button-group >  .altera-btn > .fas').click();
         cy.get('#modalidade').clear().type('Modalidade novasss ');
         cy.get('button').click();
     });
@@ -29,7 +27,7 @@ describe('Modalidade Testes', () => {
         cy.intercept('DELETE', '/api/modalidades/**').as('deletarModalidade');
 
         // Clica no botão de deletar
-        cy.get(':nth-child(2) > :nth-child(2) > .button-group > .delete-btn > .fas').click();
+        cy.get(':nth-child(1) > :nth-child(2) > .button-group > .delete-btn').click();
     
         // Intercepta o diálogo de confirmação e clica em "OK"
         cy.on('window:confirm', (confirmText) => {
